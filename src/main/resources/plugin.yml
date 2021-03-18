@@ -1,7 +1,7 @@
 name: MelonSigns
 version: ${project.version}
 main: de.pandadoxo.melonsigns.Main
-api-version: 1.16
+api-version: 1.15
 authors: [Pandadoxo]
 
 commands:
