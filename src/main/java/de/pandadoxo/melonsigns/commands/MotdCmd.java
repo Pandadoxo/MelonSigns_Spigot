@@ -16,7 +16,7 @@ import org.bukkit.util.RayTraceResult;
 
 public class MotdCmd implements CommandExecutor {
 
-    private final String SYNTAX = Main.WRONG_SYNTAX + "/setmotd <Motd>";
+    private final String SYNTAX = Main.WRONG_SYNTAX + "/motd <Motd>";
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
