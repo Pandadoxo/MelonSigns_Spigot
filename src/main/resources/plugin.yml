@@ -1,0 +1,9 @@
+name: MelonSigns
+version: ${project.version}
+main: de.pandadoxo.melonsigns.Main
+api-version: 1.16
+authors: [Pandadoxo]
+
+commands:
+  createsign:
+  motd:
