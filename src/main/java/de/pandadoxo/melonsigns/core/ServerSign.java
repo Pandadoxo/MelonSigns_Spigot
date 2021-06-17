@@ -124,7 +124,7 @@ public class ServerSign {
         this.motd = motd;
     }
 
-    public Location getLocation() {
+    public final Location getLocation() {
         return location;
     }
 

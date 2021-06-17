@@ -7,6 +7,7 @@ package de.pandadoxo.melonsigns.listener;
 
 import de.pandadoxo.melonsigns.Main;
 import de.pandadoxo.melonsigns.core.ServerSign;
+import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +25,7 @@ public class SignListener implements Listener {
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
         Player p = event.getPlayer();
+        if (!p.getGameMode().equals(GameMode.CREATIVE)) return;
 
         ServerSign sign = Main.getServerSignConfig().getSignByLoc(event.getBlock().getLocation(), true);
         if (sign != null) {

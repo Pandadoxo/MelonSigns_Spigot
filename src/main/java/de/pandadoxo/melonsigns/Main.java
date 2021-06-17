@@ -36,6 +36,32 @@ public final class Main extends JavaPlugin {
         return min;
     }
 
+    @Override
+    public void onEnable() {
+        instance = this;
+        doxperm = new Doxperm(PREFIX);
+        bungeeUtil = new BungeeUtil();
+        serverSignConfig = new ServerSignConfig();
+        filesUtil = new FilesUtil();
+
+        animationManager = new AnimationManager().start();
+        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> animationManager.autoUpdate(true), 5);
+
+        getCommand("createsign").setExecutor(new CreateCmd());
+        getCommand("createsign").setTabCompleter(new CreateCmd());
+        getCommand("motd").setExecutor(new MotdCmd());
+
+        Bukkit.getPluginManager().registerEvents(new SignListener(), this);
+        Bukkit.getMessenger().registerIncomingPluginChannel(this, "melone:lobbysign", new MessageListener());
+        Bukkit.getMessenger().registerOutgoingPluginChannel(Main.getInstance(), "BungeeCord");
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+        //filesUtil.save();
+    }
+
     public static Main getInstance() {
         return instance;
     }
@@ -64,29 +90,4 @@ public final class Main extends JavaPlugin {
         Main.serverSignConfig = serverSignConfig;
     }
 
-    @Override
-    public void onEnable() {
-        instance = this;
-        doxperm = new Doxperm(PREFIX);
-        bungeeUtil = new BungeeUtil();
-        serverSignConfig = new ServerSignConfig();
-        filesUtil = new FilesUtil();
-
-        animationManager = new AnimationManager().start();
-        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> animationManager.autoUpdate(true), 5);
-
-        getCommand("createsign").setExecutor(new CreateCmd());
-        getCommand("createsign").setTabCompleter(new CreateCmd());
-        getCommand("motd").setExecutor(new MotdCmd());
-
-        Bukkit.getPluginManager().registerEvents(new SignListener(), this);
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "melone:lobbysign", new MessageListener());
-        Bukkit.getMessenger().registerOutgoingPluginChannel(Main.getInstance(), "BungeeCord");
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-        //filesUtil.save();
-    }
 }

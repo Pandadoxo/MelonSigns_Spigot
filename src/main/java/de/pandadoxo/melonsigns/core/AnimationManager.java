@@ -43,9 +43,8 @@ public class AnimationManager {
         return this;
     }
 
-    public AnimationManager autoUpdate(boolean autoUpdate) {
+    public void autoUpdate(boolean autoUpdate) {
         this.autoUpdate = autoUpdate;
-        return this;
     }
 
     public String getOfflineAnimation() {
